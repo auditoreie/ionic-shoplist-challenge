@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Crie Sua Lista!</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding color="secondary">
+<ion-item>
+  <ion-input type="text" placeholder="Adicione um item" [(ngModel)]="taskName"></ion-input>
+  <ion-input type="value" placeholder="| Valor" [(ngModel)]="taskValue"></ion-input>
+  <div class="item-note" item-end>
+    <button ion-button (click)="addTask()"><ion-icon name="add-circle"></ion-icon></button>
+  </div>
+</ion-item>
+<div padding>
+  <ion-list>
+    <ion-item *ngFor="let todo of taskList; let taskIndex = index">
+      {{todo}} {{taskValue}}
+      <div class="item-note" item-end>
+        <button ion-button clear (click)="editTask(taskIndex)">
+          <ion-icon name="create"></ion-icon>
+        </button>
+        <button ion-button clear (click)="deleteTask(taskIndex)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </div>
+    </ion-item>
+  </ion-list>
+</div>
+</ion-content>
+
+
+
+   
+

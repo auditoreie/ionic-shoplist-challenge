@@ -1,34 +1,35 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Lista de Compras!!!!</ion-title>
+    <ion-title>Lista de Compras</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
-<ion-content padding color="secondary">
+      <ion-content padding color="secondary">
 <ion-item>
-  <ion-input type="text" placeholder="Adicione um item" [(ngModel)]="taskName"></ion-input>
-  <ion-input type="value" placeholder="| Valor" [(ngModel)]="taskValue"></ion-input>
+  <ion-input type="text" placeholder="Item" [(ngModel)]="currentItem.itemName"></ion-input>
+  <ion-input type="number" placeholder="| Qtd" [(ngModel)]="currentItem.itemAmount"></ion-input>
+  <ion-input type="tel" placeholder="| Preço" [(ngModel)]="currentItem.itemPrice"></ion-input>
   <div class="item-note" item-end>
-    <button ion-button (click)="addTask()"><ion-icon name="add-circle"></ion-icon></button>
+    <button ion-button (click)="addItem()"><ion-icon name="add-circle"></ion-icon></button>
   </div>
 </ion-item>
 <div padding>
   <ion-list>
-    <ion-item *ngFor="let todo of taskList; let taskIndex = index">
-      {{todo}} {{taskValue}}
+    <ion-item *ngFor="let item of itemList; let itemIndex = index">
+        {{item.itemName}} | {{ item.itemAmount }} | R$ {{item.itemPrice}}
       <div class="item-note" item-end>
-        <button ion-button clear (click)="editTask(taskIndex)">
+        <button ion-button clear (click)="editItem(itemIndex)">
           <ion-icon name="create"></ion-icon>
         </button>
-        <button ion-button clear (click)="deleteTask(taskIndex)">
+        <button ion-button clear (click)="deleteItem(itemIndex)">
           <ion-icon name="trash"></ion-icon>
         </button>
       </div>
     </ion-item>
   </ion-list>
 </div>
-</ion-content>
+      </ion-content>
 
 
 

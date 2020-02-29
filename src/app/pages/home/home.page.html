@@ -7,17 +7,17 @@
 
       <ion-content padding color="secondary">
 <ion-item>
-  <ion-input type="text" placeholder="Item" [(ngModel)]="itemName"></ion-input>
-  <ion-input type="value" placeholder="| Valor" [(ngModel)]="itemPrice"></ion-input>
-  <ion-input type="amount" placeholder="| Qtd" [(ngModel)]="amount"></ion-input>
+  <ion-input type="text" placeholder="Item" [(ngModel)]="currentItem.itemName"></ion-input>
+  <ion-input type="number" placeholder="| Qtd" [(ngModel)]="currentItem.itemAmount"></ion-input>
+  <ion-input type="tel" placeholder="| Preço" [(ngModel)]="currentItem.itemPrice"></ion-input>
   <div class="item-note" item-end>
     <button ion-button (click)="addItem()"><ion-icon name="add-circle"></ion-icon></button>
   </div>
 </ion-item>
 <div padding>
   <ion-list>
-    <ion-item *ngFor="let list of itemList; let itemIndex = index">
-      {{list}} {{itemPrice}}
+    <ion-item *ngFor="let item of itemList; let itemIndex = index">
+        {{item.itemName}} | {{ item.itemAmount }} | R$ {{item.itemPrice}}
       <div class="item-note" item-end>
         <button ion-button clear (click)="editItem(itemIndex)">
           <ion-icon name="create"></ion-icon>

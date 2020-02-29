@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 
 interface ChartItem {
-  description?: string;
-  amount: number;
-  value: number,
-  total: number
+  itemName: string;
+  itemPrice: number;
+  itemAmount: number;
 }
 
 @Component({
@@ -16,34 +15,51 @@ interface ChartItem {
 
 export class HomePage {
 
-  chartItem: ChartItem = {
-    description: 'Primeiro Item',
-    amount: 0,
-    value: 0,
-    total: 0
-  }
-
-  chartList = [];
-
-  itemList = [];
-  itemName = [];
-  index = [];
-  itemPrice = [];
+  itemList: Array<ChartItem> = [ ]
+  currentItem: ChartItem;
 
   constructor(
     private alertCtrl: AlertController
-  ) { }
+  ) { 
+    this.initializeEmptyItem();
+    this.retrieveItemListFromLocalStorage();
+    console.log(localStorage);
+  }
 
-  addChartItem() {
+  /**
+   * Inicializa o item atual com vazio
+   */
+  initializeEmptyItem() {
+    this.currentItem = {
+      itemName: '',
+      itemAmount: 0,
+      itemPrice: 0  
+    }
+  }
+
+  /** 
+   * Salvar a lista atual no localStorage
+   */
+  saveItemListToLocalStorage() {
+    const currentList = JSON.stringify(this.itemList)
+    localStorage.setItem('currentList', currentList);
+  }
+
+  retrieveItemListFromLocalStorage() {
+    const currentList = JSON.parse(localStorage.getItem('currentList'));
+    if (currentList !== null) {
+      this.itemList = currentList;
+    }
 
   }
 
+
   addItem() {
-    if (this.itemName.length > 0) {
-      let task = this.itemName;
-      this.itemList.push(task);
-      this.itemName = [];
-    }
+    console.log('Adicionar Item');
+    console.log(this.currentItem);
+    this.itemList.push(this.currentItem);
+    this.saveItemListToLocalStorage();
+    this.initializeEmptyItem();
   }
 
   /**
@@ -51,20 +67,19 @@ export class HomePage {
    */
   deleteItem(itemIndex: number) {
     this.itemList.splice(itemIndex, 1);
+    this.saveItemListToLocalStorage();
   }
 
   /**
    * Atualiza os dados da task
    */
-  updateItem() {
-
-  }
-
   editItem(itemIndex) {
     // Mostrar o Alert
-    this.createAlert(itemIndex).then(alert => {
-      alert.present();
-    })
+    this
+      .createAlert(itemIndex)
+      .then(alert => {
+        alert.present();
+      })
     // ----
 
   }
@@ -74,23 +89,27 @@ export class HomePage {
    * @returns Alert
    */
   async createAlert(itemIndex) {
+    const editingItem: ChartItem = this.itemList[itemIndex];
     const alert = await this.alertCtrl.create({
         message: 'Edite seu item.',
         inputs: [
           {
             name: 'itemName',
             label: 'Descrição',
-            placeholder: 'Nome do Item'
+            placeholder: 'Nome do Item',
+            value: editingItem.itemName
           },
           {
-            name: 'amount',
+            name: 'itemAmount',
             label: 'Qtd',
-            placeholder: 'Quantidade'
+            placeholder: 'Quantidade',
+            value: editingItem.itemAmount
           },
           {
             name: 'itemPrice',
-            label: 'Valor',
-            placeholder: 'Valor'
+            label: 'Preço',
+            placeholder: 'Preço',
+            value: editingItem.itemPrice
           }
         ],
         buttons: [
@@ -101,8 +120,10 @@ export class HomePage {
           {
             text: 'Atualizar',
             handler: data => {
-              this.itemList[itemIndex] = data.taskName;
-              this.itemPrice[itemIndex] = data.taskValue; 
+              console.log('Item a ser alterado');
+              console.log(data);
+              this.itemList[itemIndex] = data;
+              this.saveItemListToLocalStorage();
             }
           }
         ]

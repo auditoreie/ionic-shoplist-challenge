@@ -25,10 +25,10 @@ export class HomePage {
 
   chartList = [];
 
-  taskList = [];
-  taskName = [];
+  itemList = [];
+  itemName = [];
   index = [];
-  taskValue = [];
+  itemPrice = [];
 
   constructor(
     private alertCtrl: AlertController
@@ -38,31 +38,31 @@ export class HomePage {
 
   }
 
-  addTask() {
-    if (this.taskName.length > 0) {
-      let task = this.taskName;
-      this.taskList.push(task);
-      this.taskName = [];
+  addItem() {
+    if (this.itemName.length > 0) {
+      let task = this.itemName;
+      this.itemList.push(task);
+      this.itemName = [];
     }
   }
 
   /**
    * Exclui uma task
    */
-  deleteTask(taskIndex: number) {
-    this.taskList.splice(taskIndex, 1);
+  deleteItem(itemIndex: number) {
+    this.itemList.splice(itemIndex, 1);
   }
 
   /**
    * Atualiza os dados da task
    */
-  updateTask() {
+  updateItem() {
 
   }
 
-  editTask(taskIndex) {
+  editItem(itemIndex) {
     // Mostrar o Alert
-    this.createAlert(taskIndex).then(alert => {
+    this.createAlert(itemIndex).then(alert => {
       alert.present();
     })
     // ----
@@ -73,12 +73,12 @@ export class HomePage {
    * Cria o modal do alert
    * @returns Alert
    */
-  async createAlert(taskIndex) {
+  async createAlert(itemIndex) {
     const alert = await this.alertCtrl.create({
         message: 'Edite seu item.',
         inputs: [
           {
-            name: 'taskName',
+            name: 'itemName',
             label: 'Descrição',
             placeholder: 'Nome do Item'
           },
@@ -88,7 +88,7 @@ export class HomePage {
             placeholder: 'Quantidade'
           },
           {
-            name: 'taskValue',
+            name: 'itemPrice',
             label: 'Valor',
             placeholder: 'Valor'
           }
@@ -101,8 +101,8 @@ export class HomePage {
           {
             text: 'Atualizar',
             handler: data => {
-              this.taskList[taskIndex] = data.taskName;
-              this.taskValue[taskIndex] = data.taskValue; 
+              this.itemList[itemIndex] = data.taskName;
+              this.itemPrice[itemIndex] = data.taskValue; 
             }
           }
         ]

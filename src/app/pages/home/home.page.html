@@ -7,22 +7,22 @@
 
       <ion-content padding color="secondary">
 <ion-item>
-  <ion-input type="text" placeholder="Item" [(ngModel)]="taskName"></ion-input>
-  <ion-input type="value" placeholder="| Valor" [(ngModel)]="taskValue"></ion-input>
+  <ion-input type="text" placeholder="Item" [(ngModel)]="itemName"></ion-input>
+  <ion-input type="value" placeholder="| Valor" [(ngModel)]="itemPrice"></ion-input>
   <ion-input type="amount" placeholder="| Qtd" [(ngModel)]="amount"></ion-input>
   <div class="item-note" item-end>
-    <button ion-button (click)="addTask()"><ion-icon name="add-circle"></ion-icon></button>
+    <button ion-button (click)="addItem()"><ion-icon name="add-circle"></ion-icon></button>
   </div>
 </ion-item>
 <div padding>
   <ion-list>
-    <ion-item *ngFor="let todo of taskList; let taskIndex = index">
-      {{todo}} {{taskValue}}
+    <ion-item *ngFor="let list of itemList; let itemIndex = index">
+      {{list}} {{itemPrice}}
       <div class="item-note" item-end>
-        <button ion-button clear (click)="editTask(taskIndex)">
+        <button ion-button clear (click)="editItem(itemIndex)">
           <ion-icon name="create"></ion-icon>
         </button>
-        <button ion-button clear (click)="deleteTask(taskIndex)">
+        <button ion-button clear (click)="deleteItem(itemIndex)">
           <ion-icon name="trash"></ion-icon>
         </button>
       </div>

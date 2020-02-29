@@ -5,10 +5,11 @@
 </ion-header>
 
 
-<ion-content padding color="secondary">
+      <ion-content padding color="secondary">
 <ion-item>
-  <ion-input type="text" placeholder="Adicione um item" [(ngModel)]="taskName"></ion-input>
+  <ion-input type="text" placeholder="Item" [(ngModel)]="taskName"></ion-input>
   <ion-input type="value" placeholder="| Valor" [(ngModel)]="taskValue"></ion-input>
+  <ion-input type="amount" placeholder="| Qtd" [(ngModel)]="amount"></ion-input>
   <div class="item-note" item-end>
     <button ion-button (click)="addTask()"><ion-icon name="add-circle"></ion-icon></button>
   </div>
@@ -28,7 +29,7 @@
     </ion-item>
   </ion-list>
 </div>
-</ion-content>
+      </ion-content>
 
 
 

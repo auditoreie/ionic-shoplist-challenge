@@ -26,6 +26,15 @@ export class HomePage {
     console.log(localStorage);
   }
 
+  reorderItems(event)
+  {
+    console.log(event);
+    console.log(`Moving item from ${event.detail.from} to ${event.detail.to}`);
+    const itemMove = this.itemList.splice(event.detail.from, 1)[0];
+    this.itemList.splice(event.detail.to, 0, itemMove);
+    event.detail.complete();
+  }
+
   /**
    * Inicializa o item atual com vazio
    */

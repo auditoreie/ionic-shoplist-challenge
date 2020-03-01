@@ -16,8 +16,10 @@
 </ion-item>
 <div padding>
   <ion-list>
+    <ion-reorder-group (IonItemReorder)="reorderItems($event)" disabled="false">
     <ion-item *ngFor="let item of itemList; let itemIndex = index">
         {{item.itemName}} | {{ item.itemAmount }} | R$ {{item.itemPrice}}
+        <ion-reorder slot="end"></ion-reorder>
       <div class="item-note" item-end>
         <button ion-button clear (click)="editItem(itemIndex)">
           <ion-icon name="create"></ion-icon>
@@ -27,6 +29,7 @@
         </button>
       </div>
     </ion-item>
+    </ion-reorder-group>
   </ion-list>
 </div>
       </ion-content>

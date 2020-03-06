@@ -89,6 +89,22 @@ export class HomePage {
     this.initializeEmptyItem();
   }
 
+
+  checkmarkItem() {
+    console.log('Item concluído')
+    console.log(this.currentItem)
+    this.itemListCompleted.push(this.currentItem);
+    this.saveItemListToLocalStorageCompleted();
+    this.retrieveItemListFromLocalStorageCompleted();
+
+   
+    
+
+  }
+
+
+
+
   /**
    * Exclui uma task
    */

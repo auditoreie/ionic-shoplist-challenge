@@ -122,6 +122,8 @@ export class HomePage {
     this.saveItemListToLocalStorage();
   }
 
+  /**
+   * Atualiza os dados do item
    */
   editItem(itemIndex) {
     // Mostrar o Alert

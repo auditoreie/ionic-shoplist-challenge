@@ -41,6 +41,11 @@
   </ion-item>
     </ion-reorder-group>
   </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let item of itemListCompleted; let itemIndex = index">
+      {{item.itemName}} | {{ item.itemAmount }} | R$ {{item.itemPrice}}
+    </ion-item>
+  </ion-list>
 </div>
       </ion-content>
 

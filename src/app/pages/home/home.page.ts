@@ -65,6 +65,18 @@ export class HomePage {
 
   }
 
+  saveItemListToLocalStorageCompleted() {
+    const currentList = JSON.stringify(this.itemList)
+    localStorage.setItem('currentList', currentList);
+  }
+
+  retrieveItemListFromLocalStorageCompleted() {
+    const currentList = JSON.parse(localStorage.getItem('currentList'));
+    if (currentList !== null) {
+      this.itemList = currentList;
+    }
+
+  }
 
   addItem() {
     console.log('Adicionar Item');

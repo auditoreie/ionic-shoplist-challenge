@@ -36,6 +36,9 @@
         </button>
       </div>
     </ion-item>
+    <ion-item>
+      Total: <span slot="end">{{ total | currency:'BRL':'symbol' }}</span>
+  </ion-item>
     </ion-reorder-group>
   </ion-list>
 </div>

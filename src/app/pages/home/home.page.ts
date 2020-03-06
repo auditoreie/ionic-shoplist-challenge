@@ -78,6 +78,9 @@ export class HomePage {
 
   }
 
+  /**
+   * Adiciona um item
+   */
   addItem() {
     console.log('Adicionar Item');
     console.log(this.currentItem);

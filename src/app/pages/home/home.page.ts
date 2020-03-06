@@ -17,6 +17,9 @@ export class HomePage {
 
   itemList: Array<ChartItem> = [ ]
   currentItem: ChartItem;
+  itemListCompleted: Array<ChartItem> = [ ]
+  total: number;
+
 
   constructor(
     private alertCtrl: AlertController

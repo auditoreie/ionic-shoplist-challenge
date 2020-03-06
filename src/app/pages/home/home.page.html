@@ -22,6 +22,7 @@
     <ion-reorder-group (IonItemReorder)="reorderItems($event)" disabled="false">
     <ion-item *ngFor="let item of itemList; let itemIndex = index">
         {{item.itemName}} | {{ item.itemAmount }} | R$ {{item.itemPrice}}
+        <ion-label slot="end" text-right>{{ (item.itemPrice * item.itemAmount) | currency:'BRL':'symbol' }}</ion-label>
         <ion-reorder slot="end"></ion-reorder>
       <div class="item-note" item-end>
         <button ion-button clear (click)="editItem(itemIndex)">

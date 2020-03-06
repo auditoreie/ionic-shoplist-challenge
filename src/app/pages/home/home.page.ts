@@ -106,7 +106,7 @@ export class HomePage {
 
 
   /**
-   * Exclui uma task
+   * Exclui um item
    */
   deleteItem(itemIndex: number) {
     this.itemList.splice(itemIndex, 1);

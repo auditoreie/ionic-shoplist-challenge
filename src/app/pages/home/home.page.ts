@@ -114,7 +114,14 @@ export class HomePage {
   }
 
   /**
-   * Atualiza os dados da task
+   * Soma dos itens = total
+   */
+  ngOnInit() {
+    this
+    .total = this.itemList.reduce((a, b) => a + (b.itemAmount * b.itemPrice), 0);
+    this.saveItemListToLocalStorage();
+  }
+
    */
   editItem(itemIndex) {
     // Mostrar o Alert

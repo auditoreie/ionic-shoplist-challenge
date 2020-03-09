@@ -40,12 +40,14 @@
     <ion-item>
       Total: <span slot="end">{{ total | currency:'BRL':'symbol' }}</span>
   </ion-item>
-    </ion-reorder-group>
+  
   </ion-list>
   <ion-list>
+    <div class="itemListCompleted">
     <ion-item *ngFor="let item of itemListCompleted; let itemIndex = index">
-      {{item.itemName}} | {{ item.itemAmount }} | R$ {{item.itemPrice}}
+        teste | {{ item.itemAmount }} | R$ {{item.itemPrice}}
     </ion-item>
+    </div>
   </ion-list>
 </div>
       </ion-content>

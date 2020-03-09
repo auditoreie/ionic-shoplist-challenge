@@ -45,7 +45,7 @@
   <ion-list>
     <div class="itemListCompleted">
     <ion-item *ngFor="let item of itemListCompleted; let itemIndex = index">
-        teste | {{ item.itemAmount }} | R$ {{item.itemPrice}}
+       <ion-label color ="tertiary" floating> {{item.itemName}} | {{ item.itemAmount }} | R$ {{item.itemPrice}} </ion-label>
     </ion-item>
     </div>
   </ion-list>

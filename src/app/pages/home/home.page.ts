@@ -17,6 +17,9 @@ export class HomePage {
 
   itemList: Array<ChartItem> = [ ]
   currentItem: ChartItem;
+  itemListCompleted: Array<ChartItem> = [ ]
+  total: number;
+
 
   constructor(
     private alertCtrl: AlertController
@@ -25,6 +28,15 @@ export class HomePage {
     this.retrieveItemListFromLocalStorage();
     console.log(localStorage);
   }
+
+  reorderItems(event)
+  {
+    console.log(event);
+    console.log(`Moving item from ${event.detail.from} to ${event.detail.to}`);
+    const itemMove = this.itemList.splice(event.detail.from, 1)[0];
+    this.itemList.splice(event.detail.to, 0, itemMove);
+    event.detail.complete();
+  };
 
   /**
    * Inicializa o item atual com vazio
@@ -53,7 +65,22 @@ export class HomePage {
 
   }
 
+  saveItemListToLocalStorageCompleted() {
+    const currentList = JSON.stringify(this.itemList)
+    localStorage.setItem('currentList', currentList);
+  }
 
+  retrieveItemListFromLocalStorageCompleted() {
+    const currentList = JSON.parse(localStorage.getItem('currentList'));
+    if (currentList !== null) {
+      this.itemList = currentList;
+    }
+
+  }
+
+  /**
+   * Adiciona um item
+   */
   addItem() {
     console.log('Adicionar Item');
     console.log(this.currentItem);
@@ -62,8 +89,24 @@ export class HomePage {
     this.initializeEmptyItem();
   }
 
+
+  checkmarkItem() {
+    console.log('Item concluído')
+    console.log(this.currentItem)
+    this.itemListCompleted.push(this.currentItem);
+    this.saveItemListToLocalStorageCompleted();
+    this.retrieveItemListFromLocalStorageCompleted();
+
+   
+    
+
+  }
+
+
+
+
   /**
-   * Exclui uma task
+   * Exclui um item
    */
   deleteItem(itemIndex: number) {
     this.itemList.splice(itemIndex, 1);
@@ -71,7 +114,16 @@ export class HomePage {
   }
 
   /**
-   * Atualiza os dados da task
+   * Soma dos itens = total
+   */
+  ngOnInit() {
+    this
+    .total = this.itemList.reduce((a, b) => a + (b.itemAmount * b.itemPrice), 0);
+    this.saveItemListToLocalStorage();
+  }
+
+  /**
+   * Atualiza os dados do item
    */
   editItem(itemIndex) {
     // Mostrar o Alert

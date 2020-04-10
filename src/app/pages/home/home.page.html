@@ -19,7 +19,7 @@
 </ion-item>
 <div padding>
   <ion-list>
-    <ion-reorder-group (IonItemReorder)="reorderItems($event)" disabled="false">
+    <ion-reorder-group (ionItemReorder)="reorderItems($event)" disabled="false">
     <ion-item *ngFor="let item of itemList; let itemIndex = index">
         {{item.itemName}} | {{ item.itemAmount }} | R$ {{item.itemPrice}}
         <ion-label slot="end" text-right>{{ (item.itemPrice * item.itemAmount) | currency:'BRL':'symbol' }}</ion-label>

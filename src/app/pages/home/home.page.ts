@@ -29,6 +29,9 @@ export class HomePage {
     console.log(localStorage);
   }
 
+  /**
+   * Reordena os itens
+   */
   reorderItems(event)
   {
     console.log(event);

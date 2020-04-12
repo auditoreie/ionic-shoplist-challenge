@@ -92,11 +92,12 @@ export class HomePage {
     this.initializeEmptyItem();
   }
 
-
+  /**
+   * Item concluído é movido para outra lista
+   */
   checkmarkItem() {
-    console.log('Item concluído')
     console.log(this.currentItem)
-    this.itemListCompleted.push(this.currentItem);
+    this.itemListCompleted.push(this.currentItem)
     this.saveItemListToLocalStorageCompleted();
     this.retrieveItemListFromLocalStorageCompleted();
 

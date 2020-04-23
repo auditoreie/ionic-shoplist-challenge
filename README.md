@@ -14,4 +14,5 @@ Run `npm install` in the project folder
 
 Run `ionic serve` in the project folder
 
-Happy Coding!
+Happy Coding! 
+Yes

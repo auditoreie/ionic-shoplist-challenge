@@ -25,15 +25,24 @@
         <ion-label slot="end" text-right>{{ (item.itemPrice * item.itemAmount) | currency:'BRL':'symbol' }}</ion-label>
         <ion-reorder slot="end"></ion-reorder>
       <div class="item-note" item-end>
-        <button ion-button clear (click)="editItem(itemIndex)">
-          <ion-icon name="create"></ion-icon>
-        </button>
-        <button ion-button clear (click)="deleteItem(itemIndex)">
-          <ion-icon name="trash"></ion-icon>
-        </button>
-        <button ion-button clear (click)="checkmarkItem(itemIndex)">
-          <ion-icon name="checkmark-circle"></ion-icon>
-        </button>
+        <div class="ion-fab">
+        <ion-fab vertical="bottom" horizontal="middle" slot="fixed">
+          <ion-fab-button size="small"><ion-icon name="add"></ion-icon> </ion-fab-button>
+        
+        
+          <ion-fab-list side="end">
+            <ion-fab-button (click)="editItem(itemIndex)">
+              <ion-icon name="create"></ion-icon></ion-fab-button>
+            
+            <ion-fab-button (click)="deleteItem(itemIndex)">
+              <ion-icon name="trash"></ion-icon></ion-fab-button>
+            
+            <ion-fab-button (click)="checkmarkItem(itemIndex)">
+              <ion-icon name="checkmark-circle"></ion-icon> </ion-fab-button>
+          </ion-fab-list>
+        
+        </ion-fab>
+        </div>
       </div>
     </ion-item>
   </ion-reorder-group>

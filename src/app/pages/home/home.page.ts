@@ -99,6 +99,7 @@ export class HomePage {
     this.itemList.push(this.currentItem);
     this.saveItemListToLocalStorage();
     this.initializeEmptyItem();
+    this.ngOnInit();
   }
 
   /**
@@ -124,15 +125,7 @@ export class HomePage {
   deleteItem(itemIndex: number) {
     this.itemList.splice(itemIndex, 1);
     this.saveItemListToLocalStorage();
-  }
-
-  /**
-   * Soma dos itens = total
-   */
-  ngOnInit() {
-    this
-    .total = this.itemList.reduce((a, b) => a + (b.itemAmount * b.itemPrice), 0);
-    this.saveItemListToLocalStorage();
+    this.ngOnInit();
   }
 
   /**
@@ -189,6 +182,7 @@ export class HomePage {
               console.log(data);
               this.itemList[itemIndex] = data;
               this.saveItemListToLocalStorage();
+              this.ngOnInit();
             }
           }
         ]

@@ -105,11 +105,15 @@ export class HomePage {
   /**
    * Item concluído é movido para outra lista
    */
-  checkmarkItem() {
-    console.log(this.currentItem)
-    this.itemListCompleted.push(this.currentItem)
-    this.saveItemListToLocalStorageCompleted();
-    this.retrieveItemListFromLocalStorageCompleted();
+  checkmarkItem(itemIndex: number) {
+    console.log('Item da lista é movido para lista de itens concluídos')
+    console.log(itemIndex)
+    console.log(this.itemList)
+    this.itemListCompleted.push(this.itemList[itemIndex])
+    this.itemList.splice(itemIndex, 1);
+    this.saveItemListToLocalStorage();
+    this.retrieveItemListFromLocalStorage();
+    this.ngOnInit();
 
    
     

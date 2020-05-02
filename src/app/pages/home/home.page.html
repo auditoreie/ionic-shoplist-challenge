@@ -51,11 +51,21 @@
   </ion-item-divider>
   
   </ion-list>
-  <ion-list>
+  
+<ion-list #scheduleList [hidden]="itemListCompleted.length === 0">
+  <ion-item-divider sticky>
+    <ion-label>
+      Itens Comprados
+    </ion-label>
+  </ion-item-divider>
     <div class="itemListCompleted">
-    <ion-item *ngFor="let item of itemListCompleted; let itemIndex = index">
-       <ion-label color ="tertiary" floating> {{item.itemName}} | {{ item.itemAmount }} | R$ {{item.itemPrice}} </ion-label>
+  <ion-item-sliding *ngFor="let item of itemListCompleted; let itemIndex = index" #slidingItem>
+    <ion-item>
+      <ion-label color="tertiary" floating>
+        {{item.itemName}} | {{ item.itemAmount }} | R$ {{item.itemPrice}}
+      </ion-label>
     </ion-item>
+  </ion-item-sliding>
     </div>
   </ion-list>
 </div>

@@ -8,7 +8,7 @@
   <img src="assets/icon/favicon.png"/>
 </ion-card>
 
-      <ion-content padding color="secondary">
+      <ion-content class="ion-padding" color="secondary">
 <ion-item>
   <ion-input type="text" placeholder="Item" [(ngModel)]="currentItem.itemName"></ion-input>
   <ion-input type="number" placeholder="| Qtd" [(ngModel)]="currentItem.itemAmount"></ion-input>
@@ -17,12 +17,12 @@
     <button ion-button (click)="addItem()"><ion-icon name="add-circle"></ion-icon></button>
   </div>
 </ion-item>
-<div padding>
+<div class="ion-padding">
   <ion-list>
     <ion-reorder-group (ionItemReorder)="reorderItems($event)" disabled="false">
     <ion-item *ngFor="let item of itemList; let itemIndex = index">
         {{item.itemName}} | {{ item.itemAmount }} | R$ {{item.itemPrice}}
-        <ion-label slot="end" text-right>{{ (item.itemPrice * item.itemAmount) | currency:'BRL':'symbol' }}</ion-label>
+        <ion-label slot="end" class="text-right">{{ (item.itemPrice * item.itemAmount) | currency:'BRL':'symbol' }}</ion-label>
         <ion-reorder slot="end"></ion-reorder>
       <div class="item-note" item-end>
         <div class="ion-fab">

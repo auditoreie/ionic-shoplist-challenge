@@ -82,6 +82,15 @@ export class HomePage {
   }
 
   /**
+   * Soma dos itens = total
+   */
+  ngOnInit()  {  
+    this
+    .total = this.itemList.reduce((a, b) => a + (b.itemAmount * b.itemPrice), 0);
+    this.saveItemListToLocalStorage();
+  }
+
+  /**
    * Adiciona um item
    */
   addItem() {

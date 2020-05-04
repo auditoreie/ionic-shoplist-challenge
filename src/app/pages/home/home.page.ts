@@ -29,6 +29,9 @@ export class HomePage {
     console.log(localStorage);
   }
 
+  /**
+   * Reordena os itens
+   */
   reorderItems(event)
   {
     console.log(event);
@@ -79,6 +82,15 @@ export class HomePage {
   }
 
   /**
+   * Soma dos itens = total
+   */
+  ngOnInit()  {  
+    this
+    .total = this.itemList.reduce((a, b) => a + (b.itemAmount * b.itemPrice), 0);
+    this.saveItemListToLocalStorage();
+  }
+
+  /**
    * Adiciona um item
    */
   addItem() {
@@ -87,15 +99,21 @@ export class HomePage {
     this.itemList.push(this.currentItem);
     this.saveItemListToLocalStorage();
     this.initializeEmptyItem();
+    this.ngOnInit();
   }
 
-
-  checkmarkItem() {
-    console.log('Item concluído')
-    console.log(this.currentItem)
-    this.itemListCompleted.push(this.currentItem);
-    this.saveItemListToLocalStorageCompleted();
-    this.retrieveItemListFromLocalStorageCompleted();
+  /**
+   * Item concluído é movido para outra lista
+   */
+  checkmarkItem(itemIndex: number) {
+    console.log('Item da lista é movido para lista de itens concluídos')
+    console.log(itemIndex)
+    console.log(this.itemList)
+    this.itemListCompleted.push(this.itemList[itemIndex])
+    this.itemList.splice(itemIndex, 1);
+    this.saveItemListToLocalStorage();
+    this.retrieveItemListFromLocalStorage();
+    this.ngOnInit();
 
    
     
@@ -111,15 +129,7 @@ export class HomePage {
   deleteItem(itemIndex: number) {
     this.itemList.splice(itemIndex, 1);
     this.saveItemListToLocalStorage();
-  }
-
-  /**
-   * Soma dos itens = total
-   */
-  ngOnInit() {
-    this
-    .total = this.itemList.reduce((a, b) => a + (b.itemAmount * b.itemPrice), 0);
-    this.saveItemListToLocalStorage();
+    this.ngOnInit();
   }
 
   /**
@@ -176,6 +186,7 @@ export class HomePage {
               console.log(data);
               this.itemList[itemIndex] = data;
               this.saveItemListToLocalStorage();
+              this.ngOnInit();
             }
           }
         ]

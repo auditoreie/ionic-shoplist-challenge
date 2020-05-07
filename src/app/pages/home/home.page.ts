@@ -196,4 +196,75 @@ export class HomePage {
   }
 
 
+
+
+
+    /**
+   * Adiciona um item
+   */
+  addAnItem() {
+    // Mostrar o Alert
+    this
+      .addAlert()
+      .then(alert => {
+        alert.present();
+      })
+    // ----
+
+  }
+
+  /**
+   * Cria o modal do alert
+   * @returns Alert
+   */
+  async addAlert() {
+    console.log(this.itemList)
+    const alert = await this.alertCtrl.create({
+        message: 'Adicione seu item.',
+        inputs: [
+          {
+            name: 'itemName',
+            label: 'Descrição',
+            placeholder: 'Nome do Item',
+            value: this.currentItem.itemName
+          },
+          {
+            name: 'itemAmount',
+            label: 'Qtd',
+            placeholder: 'Quantidade',
+            value: this.currentItem.itemAmount
+          },
+          {
+            name: 'itemPrice',
+            label: 'Preço',
+            placeholder: 'Preço',
+            value: this.currentItem.itemPrice
+          }
+        ],
+        buttons: [
+          { 
+            text: 'Cancelar',
+            role: 'cancel' 
+          },
+          {
+            text: 'Adicionar',
+            handler: data => {
+            console.log(data)
+            console.log('Adicionar Item');
+            console.log(this.currentItem);
+            this.itemList.push(data);
+            this.saveItemListToLocalStorage();
+            this.initializeEmptyItem();
+            this.ngOnInit();
+            }
+          }
+        ]
+      })
+    
+    return alert;
+  }
+
+  
+
+
 }

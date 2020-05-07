@@ -1,5 +1,6 @@
 ion-icon {
-    font-size: 20px;
+    font-size: 22px;
+    font-family: 'Segoe UI';
     color: #1E90FF;
   }
 .itemListCompleted {
@@ -8,7 +9,11 @@ ion-icon {
   }
 .ion-fab {
   margin: 8px;
-  width: 40px;
+  width: 1px;
   height: 180px;
   line-height: 80px;
 }
+.ion-padding {
+  font-size: 25px;
+}
+

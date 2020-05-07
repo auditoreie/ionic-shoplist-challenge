@@ -3,8 +3,8 @@ import { AlertController } from '@ionic/angular';
 
 interface ChartItem {
   itemName: string;
-  itemPrice: number;
-  itemAmount: number;
+  itemPrice: string;
+  itemAmount: string;
 }
 
 @Component({
@@ -47,8 +47,8 @@ export class HomePage {
   initializeEmptyItem() {
     this.currentItem = {
       itemName: '',
-      itemAmount: 0,
-      itemPrice: 0  
+      itemAmount: '',
+      itemPrice: ''  
     }
   }
 
@@ -86,7 +86,7 @@ export class HomePage {
    */
   ngOnInit()  {  
     this
-    .total = this.itemList.reduce((a, b) => a + (b.itemAmount * b.itemPrice), 0);
+    .total = this.itemList.reduce((a, b) => a + (parseFloat(b.itemAmount) * parseFloat(b.itemPrice)), 0);
     this.saveItemListToLocalStorage();
   }
 
@@ -98,7 +98,7 @@ export class HomePage {
     console.log(this.currentItem);
     this.itemList.push(this.currentItem);
     this.saveItemListToLocalStorage();
-    this.initializeEmptyItem();
+    //this.initializeEmptyItem();
     this.ngOnInit();
   }
 
@@ -138,7 +138,7 @@ export class HomePage {
   editItem(itemIndex) {
     // Mostrar o Alert
     this
-      .createAlert(itemIndex)
+      .editItemAlert(itemIndex)
       .then(alert => {
         alert.present();
       })
@@ -150,7 +150,7 @@ export class HomePage {
    * Cria o modal do alert
    * @returns Alert
    */
-  async createAlert(itemIndex) {
+  async editItemAlert(itemIndex) {
     const editingItem: ChartItem = this.itemList[itemIndex];
     const alert = await this.alertCtrl.create({
         message: 'Edite seu item.',
@@ -194,6 +194,77 @@ export class HomePage {
     
     return alert;
   }
+
+
+
+
+
+    /**
+   * Adiciona um item
+   */
+  addAnItem() {
+    // Mostrar o Alert
+    this
+      .addAlert()
+      .then(alert => {
+        alert.present();
+      })
+    // ----
+
+  }
+
+  /**
+   * Cria o modal do alert
+   * @returns Alert
+   */
+  async addAlert() {
+    console.log(this.itemList)
+    const alert = await this.alertCtrl.create({
+        message: 'Adicione seu item.',
+        inputs: [
+          {
+            name: 'itemName',
+            label: 'Descrição',
+            placeholder: 'Nome do Item',
+            value: this.currentItem.itemName
+          },
+          {
+            name: 'itemAmount',
+            label: 'Qtd',
+            placeholder: 'Quantidade',
+            value: this.currentItem.itemAmount
+          },
+          {
+            name: 'itemPrice',
+            label: 'Preço',
+            placeholder: 'Preço',
+            value: this.currentItem.itemPrice
+          }
+        ],
+        buttons: [
+          { 
+            text: 'Cancelar',
+            role: 'cancel' 
+          },
+          {
+            text: 'Adicionar',
+            handler: data => {
+            console.log(data)
+            console.log('Adicionar Item');
+            console.log(this.currentItem);
+            this.itemList.push(data);
+            this.saveItemListToLocalStorage();
+            this.initializeEmptyItem();
+            this.ngOnInit();
+            }
+          }
+        ]
+      })
+    
+    return alert;
+  }
+
+  
 
 
 }

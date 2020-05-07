@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Hykem Shoplist vAlpha 1.0!</ion-title>
+    <ion-title>Hykem Shoplist vBeta 2.3!</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,16 +8,14 @@
   <img src="assets/icon/favicon.png"/>
 </ion-card>
 
-      <ion-content class="ion-padding" color="secondary">
-<ion-item>
-  <ion-input type="text" placeholder="Item" [(ngModel)]="currentItem.itemName"></ion-input>
-  <ion-input type="number" placeholder="| Qtd" [(ngModel)]="currentItem.itemAmount"></ion-input>
-  <ion-input type="tel" placeholder="| Preço" [(ngModel)]="currentItem.itemPrice"></ion-input>
-  <div class="item-note" item-end>
-    <button ion-button (click)="addItem()"><ion-icon name="add-circle"></ion-icon></button>
-  </div>
-</ion-item>
-<div class="ion-padding">
+
+<ion-content class="ion-padding" color="white">
+<div class="ion-text-center">
+<ion-label>Adicionar um item</ion-label>
+<button ion-button (click)="addAnItem()"><ion-icon name="add-circle"></ion-icon></button>
+</div>
+    
+
   <ion-list>
     <ion-reorder-group (ionItemReorder)="reorderItems($event)" disabled="false">
     <ion-item *ngFor="let item of itemList; let itemIndex = index">
@@ -69,7 +67,7 @@
   </ion-item-sliding>
   </div>
 </ion-list>
-</div>
+
       </ion-content>
 
 

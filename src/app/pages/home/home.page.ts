@@ -3,8 +3,8 @@ import { AlertController } from '@ionic/angular';
 
 interface ChartItem {
   itemName: string;
-  itemPrice: number;
-  itemAmount: number;
+  itemPrice: string;
+  itemAmount: string;
 }
 
 @Component({

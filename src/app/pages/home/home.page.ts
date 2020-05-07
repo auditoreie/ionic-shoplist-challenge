@@ -86,7 +86,7 @@ export class HomePage {
    */
   ngOnInit()  {  
     this
-    .total = this.itemList.reduce((a, b) => a + (parseInt(b.itemAmount, 10) * parseInt(b.itemPrice, 10)), 0);
+    .total = this.itemList.reduce((a, b) => a + (parseFloat(b.itemAmount) * parseFloat(b.itemPrice)), 0);
     this.saveItemListToLocalStorage();
   }
 

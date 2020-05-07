@@ -138,7 +138,7 @@ export class HomePage {
   editItem(itemIndex) {
     // Mostrar o Alert
     this
-      .createAlert(itemIndex)
+      .editItemAlert(itemIndex)
       .then(alert => {
         alert.present();
       })
@@ -150,7 +150,7 @@ export class HomePage {
    * Cria o modal do alert
    * @returns Alert
    */
-  async createAlert(itemIndex) {
+  async editItemAlert(itemIndex) {
     const editingItem: ChartItem = this.itemList[itemIndex];
     const alert = await this.alertCtrl.create({
         message: 'Edite seu item.',

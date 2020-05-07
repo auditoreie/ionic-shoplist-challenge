@@ -98,7 +98,7 @@ export class HomePage {
     console.log(this.currentItem);
     this.itemList.push(this.currentItem);
     this.saveItemListToLocalStorage();
-    this.initializeEmptyItem();
+    //this.initializeEmptyItem();
     this.ngOnInit();
   }
 

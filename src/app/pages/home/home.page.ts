@@ -47,8 +47,8 @@ export class HomePage {
   initializeEmptyItem() {
     this.currentItem = {
       itemName: '',
-      itemAmount: 0,
-      itemPrice: 0  
+      itemAmount: '',
+      itemPrice: ''  
     }
   }
 
